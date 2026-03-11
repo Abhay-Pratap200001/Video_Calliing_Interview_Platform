@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Building a video calling interview platform",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "MERN",
+    "STACK",
+    "JAVASCRIPT"
+  ],
+  "author": "Abhay Pratap",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.1"
+  }
+}
