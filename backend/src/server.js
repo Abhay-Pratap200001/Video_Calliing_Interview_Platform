@@ -1,6 +1,7 @@
 import express from "express";
 import { ENV } from "./lib/env.js";
 import path from "path";
+import { connectDB } from "./lib/dbCoonection.js";
 
 const app = express();
 
@@ -27,4 +28,19 @@ if (ENV.NODE_ENV === "production") {
   });
 }
 
-app.listen(ENV.PORT, () => console.log("server is running on port", ENV.PORT));
+connectDB()
+  .then(() => {
+    const server = app.listen(ENV.PORT, () => {
+      console.log(`✅ Server running at http://localhost:${ENV.PORT}`);
+    });
+
+    // Handle runtime errors gracefully
+    server.on("error", (error) => {
+      console.error("❌ Server Error:", error);
+      process.exit(1);
+    });
+  })
+  .catch((error) => {
+    console.error("❌ MongoDB Connection Failed:", error);
+    process.exit(1);
+  });
